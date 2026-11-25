@@ -1,0 +1,62 @@
+{
+  "action_labels_verified": true,
+  "actual_fit_run": false,
+  "assessment": {
+    "fit_requires_external_gate_authorization": true,
+    "independent_groups": {
+      "dev": 15,
+      "train": 16
+    },
+    "ready": true,
+    "reasons": [],
+    "rows": 279,
+    "timing_readiness": "not_assessed",
+    "verified_groups_per_action": {
+      "dev": {
+        "balance_rewrite": 15,
+        "rewrite_refactor": 15,
+        "strash_only": 15
+      },
+      "train": {
+        "balance_rewrite": 16,
+        "rewrite_refactor": 16,
+        "strash_only": 16
+      }
+    }
+  },
+  "dev_two_verified_groups_per_action": true,
+  "expanded_rows": 99,
+  "fit_released": false,
+  "formal_gate3_pass": false,
+  "group_split_salt": "w4-small-selector-v1",
+  "independent_groups_by_family": {
+    "dev": {
+      "A": 6,
+      "B": 9
+    },
+    "train": {
+      "A": 8,
+      "B": 8
+    }
+  },
+  "offline_data_adequate": true,
+  "original_rows": 180,
+  "provenance": {
+    "expansion_cohort_sha256": "485956ccc0dd7bbcef9a5c4f5971108989236f04f2925c883e58458a3fa4849a",
+    "expansion_preregistration_sha256": "1143a7fbf781155bf023cc7c5970a350836681ce5c8b2b4a68091f68989a84c2",
+    "expansion_receipt_index_sha256": "b5083404e3e24680590cebb790b02c704763814bef6dc91e06c2127a87a2f862",
+    "expansion_rows_sha256": "4f118c60da7f21e483d703ea0e7da0b9f6ac9bbcd218d3426378805f8dc7d78e",
+    "expansion_summary_sha256": "c74fb261d0c3a203d84207aee55b5b57d3e66946a6000a84b417094b49850ec1",
+    "manifest_sha256": "34951a26fdf0a6067558931484915ea027a797cdc9f9d51f71eee01c0ece4077",
+    "original_cohort_sha256": "4675f029da7da723795a0e1bc52ab0f2d2bca9025c338f659554eb8758647e84",
+    "original_rows_sha256": "246d28ac3b138dc7236ea876459b9506c8e151b7f0b9b67f0204ec15d05de95e",
+    "selector_sha256": "05d35fb4883506dbfbea52b60b45ff7ca724094e8a3704566e4a24eddd5c1293"
+  },
+  "repeat_schedule": [
+    0,
+    1,
+    2
+  ],
+  "schema": "w4-review-readiness-v1",
+  "scope": "fixed ABC recipe development readiness only"
+}

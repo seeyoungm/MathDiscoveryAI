@@ -1,0 +1,10 @@
+{
+ "version":"1.0-dev",
+ "plan":"v2.1 2026-11-22",
+ "status":"development_protocol_not_final_week3_freeze",
+ "engine":{"initial":"structure_only_aig","depth_cap":"initial_reachable_aig_depth", "primary_cost":"unique_reachable_and_nodes","inverted_edges_cost":0,"strict_improvement":true},
+ "limits":{"development_seconds_per_task":60,"max_proposal_count":20,"max_single_verification_seconds":5,"repeats":3,"seed_indices":[0,1,2],"shared_load_cache_cost":"record separately and hold equal","timing_starts":"read common initial representation","late_results":"discard","failure_cost":"include"},
+ "verification":{"final_conversion_requires_recheck":true,"accept_only":"EQUIVALENT","nonaccepted":["COUNTEREXAMPLE","UNKNOWN","TIMEOUT","INVALID","ERROR"]},
+ "partition":{"development":["A","B_4_8"],"excluded_from_development":["A_final","B_final","B_16_32","C","D","E"],"release":{"C":5,"D":5,"E":6},"known_limit":"Mac home still requires separate evaluator access setup"},
+ "prohibitions":["no BTC files writes","no live trading or model calls","no week 3 or held-out benchmarks"]
+}

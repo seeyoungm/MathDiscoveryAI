@@ -1,0 +1,94 @@
+{
+  "family_counts": {
+    "A": 4,
+    "B": 7
+  },
+  "groups": [
+    {
+      "family": "B",
+      "group_id": "B-fixed-function:57ff60c000dc6821cf3eab882632588b11c58e1dffae9f19255e4ae901efd32e",
+      "root_id": "B-dev-2026112202-15",
+      "task_id": "B-dev-2026112202-15"
+    },
+    {
+      "family": "A",
+      "group_id": "A-npn:4:1b",
+      "root_id": "A-dev-2026112201-32",
+      "task_id": "A-dev-2026112201-32"
+    },
+    {
+      "family": "B",
+      "group_id": "B-fixed-function:d7ef7f5dd6f1855d2b67c19712b3b85bdef0ed5275b4be2fa0df200988ac7b8b",
+      "root_id": "B-dev-2026112202-24",
+      "task_id": "B-dev-2026112202-24"
+    },
+    {
+      "family": "A",
+      "group_id": "A-npn:4:1a9",
+      "root_id": "A-dev-2026112201-18",
+      "task_id": "A-dev-2026112201-18"
+    },
+    {
+      "family": "A",
+      "group_id": "A-npn:4:13d",
+      "root_id": "A-dev-2026112201-16",
+      "task_id": "A-dev-2026112201-16"
+    },
+    {
+      "family": "B",
+      "group_id": "B-fixed-function:81f8ce4d227ca6c3d7567bd38985dfea941f2e375eb5dac52e5bc9765ec48205",
+      "root_id": "B-dev-2026112202-20",
+      "task_id": "B-dev-2026112202-20"
+    },
+    {
+      "family": "B",
+      "group_id": "B-fixed-function:fa6fdb734469854c1a6ecbf7fb54f21626609f9fbfdcce86be18a0a5e9e1f1d6",
+      "root_id": "B-dev-2026112202-30",
+      "task_id": "B-dev-2026112202-30"
+    },
+    {
+      "family": "B",
+      "group_id": "B-fixed-function:c7dd54b129fc335625fceed75db3297886c0fe2fe8e53d4ace13d78dba641314",
+      "root_id": "B-dev-2026112202-33",
+      "task_id": "B-dev-2026112202-33"
+    },
+    {
+      "family": "B",
+      "group_id": "B-fixed-function:dd1453dec4a682b14cccb79f4adfeab7df60a2496951139b09edd4e106642d78",
+      "root_id": "B-dev-2026112202-31",
+      "task_id": "B-dev-2026112202-31"
+    },
+    {
+      "family": "A",
+      "group_id": "A-npn:4:36e",
+      "root_id": "A-dev-2026112201-30",
+      "task_id": "A-dev-2026112201-30"
+    },
+    {
+      "family": "B",
+      "group_id": "B-fixed-function:10a3ced86d69188643e5073d3dd63ec066b3731e655f760c5a0f10516322faeb",
+      "root_id": "B-dev-2026112202-11",
+      "task_id": "B-dev-2026112202-11"
+    }
+  ],
+  "method": "exclude known W3 cohort and W2 ABC exposed task, lineage root, canonical and structural keys; keep all fixed selector hash-dev groups; sort by SHA256(w4-validation-v1:canonical_id)",
+  "outcome_blind": true,
+  "purpose": "offline A/B only, groups without recorded action outcomes; not an untouched holdout",
+  "selector_split_salt": "w4-small-selector-v1",
+  "source_manifest": "records/week2/week2_smoke/dataset_manifest.jsonl",
+  "source_manifest_sha256": "34951a26fdf0a6067558931484915ea027a797cdc9f9d51f71eee01c0ece4077",
+  "task_ids": [
+    "B-dev-2026112202-15",
+    "A-dev-2026112201-32",
+    "B-dev-2026112202-24",
+    "A-dev-2026112201-18",
+    "A-dev-2026112201-16",
+    "B-dev-2026112202-20",
+    "B-dev-2026112202-30",
+    "B-dev-2026112202-33",
+    "B-dev-2026112202-31",
+    "A-dev-2026112201-30",
+    "B-dev-2026112202-11"
+  ],
+  "version": "w4-validation-cohort-v1"
+}

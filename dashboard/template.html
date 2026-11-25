@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>MathDiscoveryAI | 실험 기록실</title>
+<style>
+:root{--paper:#f7f6f1;--white:#fffefa;--ink:#1d2d26;--muted:#53635b;--line:#d5dcd3;--green:#155f45;--green-bright:#d5efdd;--orange:#9a442b;--orange-light:#f9e1d4;--deep:#123b2c;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:system-ui,-apple-system,BlinkMacSystemFont,"Malgun Gothic",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.56 var(--sans)}a{color:inherit}button,select{font:inherit}button{cursor:pointer}a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible{outline:3px solid #b24b27;outline-offset:3px}.skip{position:absolute;z-index:5;left:1rem;top:-100px;background:white;padding:10px}.skip:focus{top:8px}.shell{width:min(1160px,calc(100% - 52px));margin:auto}
+nav{background:var(--white);border-bottom:1px solid var(--line)}nav .shell{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:14px}.brand{display:flex;align-items:center;gap:9px;font-weight:750;letter-spacing:-.035em;white-space:nowrap}.brand-icon{display:grid;place-items:center;width:28px;height:28px;background:var(--green);border-radius:8px;color:white;font-weight:800;font-family:var(--mono)}.nav-links{display:flex;flex-wrap:wrap;gap:clamp(10px,3vw,35px);font-size:13px;color:var(--muted)}.nav-links a{text-decoration:none;white-space:nowrap}.nav-links a:hover{text-decoration:underline}
+.hero{background:var(--deep);color:#f1fbf3;overflow:hidden;position:relative}.hero:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;background:radial-gradient(circle at center,#e7f8e8 1px,transparent 1.6px) 0 0/15px 15px;mask-image:linear-gradient(90deg,transparent 46%,#000)}.hero .shell{position:relative;z-index:1;display:grid;grid-template-columns:1fr 240px;align-items:center;gap:30px;padding:52px 0 58px}.eyebrow{font:700 11px/1.55 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--green)}.hero .eyebrow{color:#a9ddbd}.hero h1{letter-spacing:-.078em;line-height:1.12;font-size:clamp(40px,6.7vw,78px);margin:12px 0 15px;font-weight:775}.hero p{color:#d1e4d7;margin:0;max-width:630px;word-break:keep-all}.stamp{justify-self:stretch;border:1px solid #64917b;padding:17px 19px;border-radius:14px;background:#143d30;box-shadow:0 0 0 5px #122f2255}.stamp span{display:block;color:#a9ddbd;font:700 11px var(--mono);letter-spacing:.1em}.stamp b{display:block;font-size:19px;margin-top:8px}.stamp small{display:block;color:#c6dfd0;margin-top:5px}
+main.shell{padding:27px 0 46px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{border:1px solid var(--line);border-radius:14px;background:var(--white);padding:14px 16px}.stat label,.metric-label{display:block;font-size:12px;color:var(--muted)}.stat strong{display:block;font:730 clamp(22px,2.5vw,34px)/1.32 var(--mono);margin:3px 0;letter-spacing:-.065em}.stat small{color:var(--muted);font-size:11px}.block{margin-top:34px}.sec-top{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:12px}.sec-top h2{font-size:clamp(23px,3vw,32px);line-height:1.2;letter-spacing:-.055em;margin:3px 0 0}.sec-top p{margin:0;font-size:13px;color:var(--muted);max-width:460px;word-break:keep-all}.stage-list{display:grid;grid-template-columns:repeat(5,1fr);list-style:none;padding:0;margin:0;gap:8px}.stage{min-width:0;border:1px solid var(--line);border-radius:14px;padding:13px;background:var(--white)}.stage b,.stage small{display:block}.stage .mono{color:var(--green);font:700 11px var(--mono);letter-spacing:.07em}.stage b{margin:7px 0 2px;letter-spacing:-.035em}.stage small{color:var(--muted);font-size:12px;line-height:1.48;word-break:keep-all}.stage.warn{border-color:#dfae99;background:#fff7f0}.stage.warn .mono{color:var(--orange)}.stage.next{border-color:#5e9d80;background:#e9f4e9}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:17px;padding:clamp(13px,2vw,22px)}.grid{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(0,1fr);gap:13px}.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:13px}.filters label{display:grid;gap:4px;color:var(--muted);font-size:12px}.filters select{border:1px solid #a0b2a5;border-radius:7px;background:white;padding:6px 25px 6px 9px;color:var(--ink);max-width:100%}.table-wrap{overflow:auto;max-height:445px}.chart-head,.bar-row{display:grid;grid-template-columns:112px minmax(0,1fr) 51px;align-items:center;gap:9px}.chart-head{font-size:11px;color:var(--muted);padding:5px 0}.bar-row{width:100%;border:0;border-top:1px solid #e8ece5;padding:7px 0;background:transparent;color:var(--ink);border-radius:0;text-align:left}.bar-row:hover,.bar-row[aria-pressed=true]{background:#edf5ee}.bar-row:focus-visible{outline-offset:-3px}.lab{font:650 12px var(--mono);padding-left:3px}.scaled{height:12px;border-radius:3px;position:relative;background:#edf0eb;overflow:hidden}.scaled .before,.scaled .after{position:absolute;left:0;top:0;bottom:0}.scaled .before{background:#bdccbf}.scaled .after{background:#287455}.num{font:650 11px var(--mono);text-align:right;padding-right:3px}.legend{display:flex;flex-wrap:wrap;gap:11px;color:var(--muted);font-size:11px;margin-top:9px}.dot{display:inline-block;width:9px;height:9px;border-radius:2px;background:#bdccbf;margin-right:4px}.dot.after{background:#287455}.aside{display:grid;gap:13px;align-content:start}.aside h3,.panel h3{margin:0 0 9px;letter-spacing:-.035em;font-size:16px}.aside p,.note{color:var(--muted);font-size:12px;margin:8px 0 0}.group-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.group-stats div{background:#edf3ea;padding:8px;border-radius:7px}.group-stats b{font:750 22px var(--mono);display:block}.head-lines{display:grid;gap:7px}.head-line{font-size:13px;display:flex;justify-content:space-between;gap:10px}.head-line b{font-family:var(--mono)}.head-pair{height:6px;background:#e8eee8;border-radius:6px;overflow:hidden}.head-pair span{display:block;height:100%;background:#287455}.head-pair.oracle span{background:#83ad91}.small-mono{font:11px/1.45 var(--mono);overflow-wrap:anywhere;color:var(--muted)}.recipe-list{margin:10px 0 0;padding:0;list-style:none;font:12px/1.55 var(--mono)}.recipe-list li{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;border-top:1px solid var(--line);padding:5px 0}.recipe-list span:last-child{text-align:right;white-space:nowrap}.banner{border:1px solid #dec5ab;border-radius:13px;padding:13px 16px;background:#fbf2e3;color:#59452e}.banner.success{border-color:#b2cbb8;background:#eef6ec;color:var(--ink)}.banner b{display:block;margin-bottom:3px}.banner p{margin:0;font-size:13px}.limits{display:grid;gap:9px;grid-template-columns:repeat(3,1fr)}.limits p{margin:0;color:var(--muted);font-size:13px;word-break:keep-all}.foot{border-top:1px solid var(--line);padding:18px 0;color:var(--muted);font-size:12px}details{margin-top:10px}summary{cursor:pointer;color:var(--green);font-size:13px}table{width:100%;border-collapse:collapse;text-align:left;font-size:12px}caption{text-align:left;color:var(--muted);margin:8px 0}th,td{padding:5px;border-bottom:1px solid var(--line)}.nowrap{white-space:nowrap}.scroll{overflow:auto}.cohort{min-width:0}.latest-panels{grid-template-columns:1fr}.latest-panels .stats{margin:10px 0}.latest-panels .scroll{margin-top:8px}.latest-panels td,.latest-panels th{padding-right:14px}.latest-panels .metric-label{line-height:1.3}
+@media(max-width:780px){.hero .shell{grid-template-columns:1fr 180px;padding:39px 0}.grid{grid-template-columns:1fr}.aside{grid-template-columns:repeat(2,1fr)}.stage-list{grid-template-columns:repeat(3,1fr)}.sec-top{align-items:start}}
+@media(max-width:540px){.shell{width:calc(100% - 28px)}nav .shell{display:block;padding:10px 0}.nav-links{margin-top:7px}.hero .shell{grid-template-columns:1fr;gap:17px;padding:31px 0 34px}.hero h1{margin-top:7px}.stamp{justify-self:start;padding:10px 13px}.stamp b{font-size:16px}.stats,.limits,.stage-list{grid-template-columns:repeat(2,1fr)}.stat{padding:10px}.block{margin-top:26px}.sec-top{display:block}.sec-top p{margin-top:5px}.aside{grid-template-columns:1fr}.chart-head,.bar-row{grid-template-columns:94px minmax(0,1fr) 42px;gap:6px}.lab{font-size:11px}.filters{gap:6px}.filters select{font-size:13px;min-width:0;padding-right:14px}}
+#replay svg{width:100%;height:auto;display:block;background:#f8faf6;border:1px solid var(--line);border-radius:8px}#replay svg text{font:14px var(--sans);fill:var(--ink)}#replay-events{max-height:19rem;overflow:auto;padding-left:1.7em}#replay-events button{text-align:left;background:transparent;border:0;color:var(--ink);padding:.32em .4em;overflow-wrap:anywhere}#replay-events button[aria-pressed=true]{background:var(--green-bright)}#replay-detail{min-height:3em}</style>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<nav aria-label="페이지"><div class="shell"><div class="brand"><span class="brand-icon" aria-hidden="true">∧</span>MathDiscoveryAI</div><div class="nav-links"><a href="#replay">시간 비교</a><a href="#timeline">진행 기록</a><a href="#compare">결과 비교</a><a href="#next">후속 실험</a><a href="#milestone">최신 실험</a><a href="#limits">검증 범위</a></div></div></nav>
+<header class="hero"><div class="shell"><div><div class="eyebrow">Research log / Development only</div><h1>논리 회로<br>실험 기록실</h1><p>같은 출력을 내는 더 작은 회로를 찾습니다. 어떤 행동이 AND 게이트를 줄였는지, 검증을 어디까지 마쳤는지 살펴보세요.</p></div><div class="stamp"><span>RESEARCH STATUS</span><b id="hero-status">4주차 데이터 확인</b><small id="hero-sub">학습·비공개 평가 미실행</small></div></div></header>
+<main id="main" class="shell">
+<section class="banner success" aria-label="11월 24일 개발 실험"><b>기존 실험 · 11월 24일</b><p>__SYNTHESIS_STATIC__</p></section>
+<section id="replay" class="block"><div class="sec-top"><div><div class="eyebrow">Latest / Timing rehearsal</div><h2>검증된 회로가 나오는 순간</h2></div><p>마감 전에 동치와 깊이를 확인한 결과만 선을 낮춥니다.</p></div>
+<div class="panel"><p id="replay-static">__ANYTIME_STATIC__</p>
+<div id="replay-ui" hidden>
+<div class="filters"><label>예제<select id="replay-case"></select></label><label>반복<select id="replay-repeat"><option value="0">1회차</option><option value="1">2회차</option><option value="2">3회차</option></select></label></div>
+<p id="replay-result" aria-live="polite"></p>
+<div id="replay-plot"></div>
+<p class="note">녹색 실선: 기본 순서. 주황 점선: 구조 우선. 점이나 아래 시험 기록을 눌러 실제 시도를 확인하세요.</p>
+<details open><summary>후보 시도 및 판정</summary><ol id="replay-events"></ol><p class="small-mono" id="replay-detail" aria-live="polite"></p></details>
+<p class="small-mono" id="replay-hash"></p></div></div></section>
+<section class="stats" aria-label="4주차 기록 요약">
+<div class="stat"><label>개발 그룹</label><strong id="stats-groups">31</strong><small id="stats-split">train 16 · dev 15</small></div>
+<div class="stat"><label>검증 기록</label><strong id="stats-rows">279</strong><small>그룹별 행동 3개 × 반복 3회</small></div>
+<div class="stat"><label>개발 상한 대비 차이</label><strong id="stats-gain">0</strong><small>4주차 dev · 평균 AND 추가 절감</small></div>
+<div class="stat"><label>정식 3주차 기준</label><strong style="color:var(--orange)">부분</strong><small>동일 예산 라이브 AI 비교 미완료</small></div>
+</section>
+<section id="timeline" class="block"><div class="sec-top"><div><div class="eyebrow">01 / Milestones</div><h2>진행 기록</h2></div></div>
+<ol class="stage-list">
+<li class="stage"><span class="mono">W1 · DONE</span><b>문제와 비용 정의</b><small>논리 회로 비용과 미공개 평가 분리 기준 결정.</small></li>
+<li class="stage"><span class="mono">W2 · DONE</span><b>개발 자료·검증기</b><small>A·B 개발 64개 생성, 동치 검사와 ABC 연결 점검.</small></li>
+<li class="stage warn"><span class="mono">W3 · PARTIAL</span><b>대조 실행</b><small>ABC·무모델 반복. 소규모 모델 응답 재생은 라이브와 분리.</small></li>
+<li class="stage"><span class="mono">W4 · READY</span><b>학습 자료 점검</b><small>고정 행동 3개 관측 자료 충족. 정식 학습은 보류.</small></li>
+<li class="stage next"><span class="mono" id="next-stage-label">NEXT · PENDING</span><b>행동 다양성 점검</b><small id="next-stage-text">검증된 기록이 나오면 아래에서 확인.</small></li>
+</ol></section>
+<section id="compare" class="block"><div class="sec-top"><div><div class="eyebrow">02 / Week 4 evidence</div><h2>그룹별 AND 수 비교</h2></div><p>막대를 누르면 행동별 게이트 수와 깊이가 보입니다. 회로 깊이가 늘어나면 채택하지 않습니다.</p></div>
+<div class="grid">
+<div class="panel cohort"><div class="filters">
+<label>그룹 분리<select id="split"><option value="dev">내부 개발 (dev)</option><option value="train">학습용 (train)</option><option value="all">전체 그룹</option></select></label>
+<label>문제 유형<select id="family"><option value="all">전체</option><option value="A">A · 진리표</option><option value="B">B · 비트 연산</option></select></label>
+<label>강조할 행동<select id="action"><option value="rewrite_refactor">rewrite_refactor (고정)</option><option value="oracle">관측 상한 (oracle)</option><option value="balance_rewrite">balance_rewrite</option><option value="strash_only">strash_only</option></select></label>
+</div><div class="chart-head" aria-hidden="true"><span>그룹</span><span>AND 게이트 수</span><span>전→후</span></div><div class="table-wrap" id="bars" role="group" aria-label="그룹별 AND 게이트 수"></div>
+<div class="legend"><span><i class="dot"></i>원본</span><span><i class="dot after"></i>선택 동작 후 (개선 없으면 원본)</span><span id="filter-count" aria-live="polite"></span></div><details><summary>수치 표로 보기</summary><div class="scroll" id="accessible-table"></div></details></div>
+<div class="aside">
+<div class="panel"><h3>고정 행동 vs 관측 상한</h3><div class="head-lines">
+<div class="head-line"><span>고정 <span class="metric-label">rewrite_refactor</span></span><b id="fixed-score">—</b></div><div id="fixed-bar" class="head-pair" aria-hidden="true"><span></span></div>
+<div class="head-line"><span>상한 <span class="metric-label">동작 3개 중 최선</span></span><b id="oracle-score">—</b></div><div id="oracle-bar" class="head-pair oracle" aria-hidden="true"><span></span></div>
+</div><p id="head-note">선택 범위의 그룹당 평균 AND 절감.</p></div>
+<div class="panel" id="details-panel" aria-live="polite"><h3>선택 그룹</h3><div class="small-mono" id="group-id">—</div><ul class="recipe-list" id="recipe-metrics"></ul><p id="structure-note"></p></div>
+</div></div></section>
+<section id="next" class="block"><div class="sec-top"><div><div class="eyebrow">03 / Next-stage pilot</div><h2>다음 실험</h2></div></div><div id="next-area" class="banner"><b>검증된 다음 실험 결과 없음</b><p>위 비교는 4주차에 기록한 값입니다. 새 실험 기록이 검증되면 이 영역에 표시됩니다.</p></div></section>
+<section id="milestone" class="block"><div class="sec-top"><div><div class="eyebrow">04 / Latest development experiments</div><h2>최신 실험 · 보완 행동과 오프라인 비교</h2></div><p>독립 검토를 통과하고 해시가 일치한 결과만 표시합니다.</p></div>
+<div class="aside latest-panels">
+<div id="milestone-synthesis" class="banner" aria-live="polite"><b>보완 행동: 독립 검토 대기</b><p>검토되기 전에는 성능 수치를 표시하지 않습니다.</p></div>
+<div id="milestone-rankpilot" class="banner" aria-live="polite"><b>오프라인 비교 수정: 독립 검토 대기</b><p>이 구역은 API 모델 검증이나 비공개 평가 결과가 아닙니다.</p></div>
+<div id="milestone-local-contract" class="panel" hidden></div>
+</div></section>
+<section id="limits" class="block"><div class="sec-top"><div><div class="eyebrow">05 / Verification boundary</div><h2>검증 범위와 한계</h2></div></div>
+<div class="limits">
+<div class="panel"><h3>동치와 깊이</h3><p>정확한 입력·출력 순서에서 원본과 동치인지 검증했습니다. AND 수는 도달 가능한 게이트만 세고, 깊이가 증가하거나 AND 수가 줄지 않으면 원본을 유지합니다.</p></div>
+<div class="panel"><h3>개발 전용</h3><p>고정 행동은 기존 학습용 그룹에서 선정했습니다. 개발 그룹 반복은 독립 표본이 아닙니다. 관측 상한은 실행 뒤 고른 비교점이지 사용할 수 있는 예측 모델이 아닙니다.</p></div>
+<div class="panel"><h3>아직 미검증</h3><p>동일 예산 라이브 AI 효과, 새로운 비공개 문제에서의 일반화, 실제 처리 시간·ASIC 비용과 BTC 채굴 절감은 측정하지 않았습니다.</p></div>
+</div><details><summary>데이터 출처와 해시</summary><div class="small-mono" id="pins"></div></details>
+</section></main>
+<footer class="foot"><div class="shell">MathDiscoveryAI · 오프라인 개발 기록 · 외부 연결 없음</div></footer>
+<noscript><p class="shell">그룹 필터와 상세 수치를 확인하려면 JavaScript를 켜세요.</p></noscript>
+<script type="application/json" id="embedded-data">__EMBEDDED_DATA__</script>
+<script>
+"use strict";
+const data=JSON.parse(document.getElementById("embedded-data").textContent);
+const $=id=>document.getElementById(id);
+function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n}
+const groups=data.w4.groups;
+const mode=id=>$(id).value;
+const names={strash_only:"strash_only",balance_rewrite:"balance_rewrite",rewrite_refactor:"rewrite_refactor"};
+const fixed=data.w4.headroom.baseline_chosen_from_original_train_only;
+const fmt=x=>Intl.NumberFormat("ko-KR",{maximumFractionDigits:2}).format(x);
+function saved(t,a){const r=t.actions[a];return r[3]?Math.max(0,t.original-r[0]):0}
+function pick(t,a){return a==="oracle"?Math.max(...data.w4.menu.map(m=>saved(t,m))):saved(t,a)}
+function caption(t){return t.family+" · "+t.id.split("-").at(-1).padStart(2,"0")+" · "+t.source}
+let active=null;
+function show(t){
+ const selected=t?t.id:null;
+ active=selected;
+ for(const b of $("bars").children)b.setAttribute("aria-pressed",String(b.dataset.task===selected));
+ $("group-id").textContent=t?t.group:"선택할 그룹이 없습니다.";
+ $("recipe-metrics").replaceChildren();
+ $("structure-note").textContent="";
+ if(!t)return;
+ for(const a of data.w4.menu){
+  const [ands,depth,,ok]=t.actions[a];
+  const line=el("li");line.append(el("span","",names[a]),el("span","",ands+" AND · 깊이 "+depth+(ok?"":" (제외)")));
+  $("recipe-metrics").append(line);
+ }
+ const n=new Set(Object.values(t.actions).map(r=>r[2])).size;
+ $("structure-note").textContent="원본 "+t.original+" AND · 깊이 "+t.inputDepth+" / 정규화 회로 구조 "+n+"종 · 3회 반복 일치";
+}
+function tableFor(visible,a){
+ const table=el("table"), c=el("caption","","현재 필터의 AND 게이트 수");
+ const head=el("thead"), row=el("tr");
+ ["그룹","원본","선택 행동 후","절감"].forEach(x=>{const n=el("th","",x);n.scope="col";row.append(n)});head.append(row);
+ const body=el("tbody");
+ for(const t of visible){const tr=el("tr"); const s=pick(t,a);
+  [caption(t),t.original,t.original-s,s].forEach((x,i)=>{const n=el(i?"td":"th","",x);if(!i)n.scope="row";tr.append(n)});body.append(tr)
+ }
+ table.append(c,head,body);return table;
+}
+function update(){
+ const a=mode("action"), s=mode("split"), f=mode("family");
+ const shown=groups.filter(t=>(s==="all"||t.split===s)&&(f==="all"||t.family===f))
+ .sort((x,y)=>x.family.localeCompare(y.family)||Number(x.id.split("-").at(-1))-Number(y.id.split("-").at(-1)));
+ const max=Math.max(1,...shown.map(t=>t.original));
+ const pane=$("bars");pane.replaceChildren();
+ for(const t of shown){
+  const n=el("button","bar-row");n.type="button";n.dataset.task=t.id;
+  const gain=pick(t,a);
+  n.setAttribute("aria-label",caption(t)+", 원본 AND "+t.original+", 선택 후 AND "+(t.original-gain));
+  const scaled=el("span","scaled"),before=el("i","before"),after=el("i","after");
+  scaled.setAttribute("aria-hidden","true");
+  before.style.width=(100*t.original/max)+"%";after.style.width=(100*(t.original-gain)/max)+"%";
+  scaled.append(before,after);n.append(el("span","lab",caption(t)),scaled,el("span","num",t.original+"→"+(t.original-gain)));
+  n.addEventListener("click",()=>show(t));pane.append(n);
+ }
+ $("filter-count").textContent=shown.length+"개 그룹";
+ $("accessible-table").replaceChildren(tableFor(shown,a));
+ show(shown.find(t=>t.id===active)||shown[0]||null);
+ const N=shown.length;
+ const F=N?shown.reduce((m,t)=>m+pick(t,fixed),0)/N:0;
+ const O=N?shown.reduce((m,t)=>m+pick(t,"oracle"),0)/N:0;
+ $("fixed-score").textContent=N?fmt(F):"—";
+ $("oracle-score").textContent=N?fmt(O):"—";
+ $("fixed-bar").firstElementChild.style.width=(O?100*F/O:0)+"%";
+ $("oracle-bar").firstElementChild.style.width=(O?100:0)+"%";
+ $("head-note").textContent=N+"개 그룹 · 그룹당 평균 AND 절감. 관측 상한과의 차이 "+fmt(O-F)+".";
+}
+["split","family","action"].forEach(id=>$(id).addEventListener("change",update));
+const rr=data.w4.readiness.assessment, h=data.w4.headroom.partitions.combined_dev;
+$("stats-groups").textContent=rr.independent_groups.dev+rr.independent_groups.train;
+$("stats-split").textContent="train "+rr.independent_groups.train+" · dev "+rr.independent_groups.dev;
+$("stats-rows").textContent=rr.rows;
+$("stats-gain").textContent=h.mean_maximum_top1_gain;
+const pinList=el("ul");
+Object.entries(data.w4.readiness.provenance).forEach(([key,val])=>pinList.append(el("li","",key+": "+val)));
+$("pins").append(pinList);
+function showNext(next){
+ if(!next)return;
+ const s=next.summary;
+ if(s.state!=="VERIFIED_DEVELOPMENT_ONLY"){
+   const area=$("next-area");
+   area.replaceChildren(el("b","","다음 실험 검증 보류"),el("p","","실행 기록이 있지만 검증 조건을 충족한 전체 비교 결과는 없습니다."));
+   $("next-stage-label").textContent="NEXT · BLOCKED";
+   $("next-stage-text").textContent="다음 실험의 비교 조건 미충족.";
+   return;
+ }
+ const t=s.eval_totals;
+ $("hero-status").textContent="다음 개발 실험 확인";
+ $("next-stage-label").textContent="NEXT · VERIFIED";
+ $("next-stage-text").textContent="개발 그룹에서만 후보 행동 비교.";
+ const panel=el("div","panel");
+ panel.append(el("h3","","새 개발 그룹 · 행동 비교"));
+ panel.append(el("p","note","고정 기준과 학습용 그룹에서 선택한 단일 행동을 별도 개발 비교 그룹에서 대조했습니다. 모델은 학습하지 않았습니다."));
+ const v=el("div","stats");
+ const add=(label,value,small)=>{
+   const c=el("div","stat");c.append(el("span","metric-label",label),el("strong","",value),el("small","",small));v.append(c);
+ };
+ add("고정 행동",t.prior_fixed_gain,s.prior_fixed_action);
+ add("선택 행동",t.train_selected_gain,s.train_selected_action);
+ add("관측 상한",t.oracle_gain,"행동 중 그룹별 최선");
+ add("비교 그룹",t.groups,"개발 전용 · 비공개 평가 아님");
+ panel.append(v,el("p","note","수치는 비교 그룹 전체의 검증된 AND 절감 개수 합계입니다."));
+ const delta=t.oracle_gain-t.prior_menu_oracle_gain;
+ const callout=el("div","banner success");
+ callout.style.margin="12px 0";
+ callout.append(el("b","",delta===0?"새 행동이 더 줄인 AND 게이트는 없었습니다.":"관측 상한에서 추가 절감을 확인했습니다."),
+   el("p","","기존 행동 메뉴의 상한 "+t.prior_menu_oracle_gain+" · 새 메뉴의 상한 "+t.oracle_gain+
+   " · 비교 그룹은 이 실험 안의 별도 개발 데이터입니다."));
+ panel.append(callout);
+ const controls=el("label","metric-label","문제 유형 ");const select=el("select");select.id="next-family";
+ for(const [value,label] of [["all","전체"],["A","A · 진리표"],["B","B · 비트 연산"]]){const opt=el("option","",label);opt.value=value;select.append(opt);}
+ controls.append(select);panel.append(controls);
+ const detail=el("details");detail.append(el("summary","","그룹별 AND 절감·깊이 보기"));const wrap=el("div","scroll");detail.append(wrap);panel.append(detail);
+ function nextTable(){
+  const list=next.groups.filter(g=>g.partition==="eval"&&(select.value==="all"||g.family===select.value));
+  const grid=el("table");grid.append(el("caption","",list.length+"개 비교 그룹 · 각 행동: AND 절감 · 결과 AND / 깊이"));
+  const head=el("thead"), hrow=el("tr");
+  for(const v of ["그룹","원본 AND/깊이",...s.menu]){const th=el("th","",v);th.scope="col";hrow.append(th);}
+  head.append(hrow);grid.append(head);
+  const body=el("tbody");
+  for(const [i,g] of list.entries()){
+   const row=el("tr");
+   const th=el("th","nowrap",g.family+" · "+(i+1));th.scope="row";th.title=g.group_id;row.append(th,el("td","nowrap",g.source.and_count+" / "+g.source.depth));
+   for(const a of s.menu){const d=g.actions[a];row.append(el("td","nowrap",d.gain+" 절감 · "+d.ands+" / "+d.depth+(d.depthOK?"":" (깊이 초과)")));}
+   body.append(row);
+  }
+  grid.append(body);wrap.replaceChildren(grid);
+ }
+ select.addEventListener("change",nextTable);nextTable();
+ $("next-area").replaceWith(panel);panel.id="next-area";
+}
+function latestStat(label, value, foot){
+ const card=el("div","stat");card.append(el("span","metric-label",label),el("strong","",value),el("small","",foot));return card;
+}
+function latestTable(headings, rows, caption){
+ const table=el("table"), head=el("thead"), titles=el("tr"), body=el("tbody");
+ for(const value of headings){const cell=el("th","",value);cell.scope="col";titles.append(cell);}
+ for(const values of rows){const row=el("tr");for(const [i,value] of values.entries()){
+  const cell=el(i?"td":"th","",value);if(i===0)cell.scope="row";row.append(cell);
+ }body.append(row);}
+ head.append(titles);table.append(el("caption","",caption),head,body);return table;
+}
+function showMilestone(latest){
+ if(!latest)return;
+ const s=latest.synthesis, p=latest.rankpilot, c=latest.subprocess_contract;
+ if(s){
+  const target=$("milestone-synthesis");target.className="panel";
+  const stats=el("div","stats");
+  stats.append(latestStat("검증 실행",s.trials,"동치 검사로 확인"),latestStat("기존 메뉴 상한",s.oldOracle,"검증 개발 그룹"),
+   latestStat("새 메뉴 상한",s.newOracle,"검증 개발 그룹"),latestStat("상한을 넘은 그룹",s.better,"같은 그룹끼리 비교"));
+  const wrap=el("div","scroll");
+  wrap.append(latestTable(["문제군","그룹","기존 상한","새 상한"],s.families.map(f=>[f.family,f.groups,f.oldOracle,f.newOracle]),"검증 개발 그룹 · 반복은 한 번만 집계 · AND 절감 합계"));
+  target.replaceChildren(el("h3","","보완 행동 · 독립 검토 통과"),stats,wrap,
+    el("p","note", "회로 동치는 확인했지만 상한은 실행 뒤 가장 좋은 행동을 고른 값입니다. 모델 성능이나 새로운 비공개 회로에 대한 일반화는 아닙니다."),
+    el("p","small-mono","추가한 행동: "+s.added.join(", ")+" · 검토 영수증: "+s.receiptHash));
+  if(s.stop)target.append(el("div","banner","사전에 정한 개선 기준을 충족하지 못해 이번 행동 메뉴 확장을 중단했습니다."));
+  $("hero-status").textContent="보완 개발 실험 확인";
+ }
+ if(p){
+  const target=$("milestone-rankpilot");target.className="panel";
+  const wrap=el("div","scroll");
+  wrap.append(latestTable(["항목","확인 값"],p.rows,"검증 범위 · 개발 데이터만 사용"));
+  target.replaceChildren(el("h3","","오프라인 선택 비교 · 독립 검토 통과"), wrap,
+   el("p","note","오프라인 선택 비교입니다. 라이브 AI 모델 호출, 비공개 평가, 채굴 성능을 검증한 결과가 아닙니다."),
+   el("p","small-mono","검토 영수증: "+p.receiptHash));
+  $("hero-status").textContent=s?"최신 개발 실험 확인":"오프라인 선택 비교 확인";
+ }
+ if(c){
+  const target=$("milestone-local-contract");target.hidden=false;
+  const wrap=el("div","scroll");
+  wrap.append(latestTable(["항목","확인 값"],c.rows,"외부 호출 없이 로컬 가짜 응답 프로세스만 실행"));
+  target.replaceChildren(el("h3","","로컬 응답 제한 시간 · 독립 검토 통과"), wrap,
+    el("p","note","이 검사는 제한 시간 초과 시 로컬 프로세스를 중단·회수하는지를 확인한 것입니다. 앱이나 API 제공자의 응답 시간, 비용, 모델 품질은 측정하지 않았습니다."),
+    el("p","small-mono","검토 영수증: "+c.receiptHash));
+ }
+}
+function showReplay(d){
+ if(!d)return;
+ const cases=d.cases, picker=$("replay-case"), rep=$("replay-repeat");
+ const paths={canonical:"기본 순서",structure:"구조 우선"};
+ const colors={canonical:"#155f45",structure:"#9a442b"};
+ const names={after_deadline:"마감 초과",proof_timeout:"검사 시간 초과",not_equivalent:"동치 아님",unverified:"미확인",depth_rejected:"깊이 초과",feasible:"동치·깊이 통과"};
+ const ms=v=>v===null?"미도달":(v/1e6).toFixed(1)+" ms";
+ for(const c of cases){const o=el("option","",c.id);o.value=c.id;picker.append(o)}
+ picker.value=cases[0].id;rep.value="0";
+ $("replay-ui").hidden=false;
+ $("replay-hash").textContent="시간 로그 SHA-256: "+d.traceHash;
+ function svg(t,attrs){
+  const n=document.createElementNS("http://www.w3.org/2000/svg",t);
+  for(const [k,v] of Object.entries(attrs))n.setAttribute(k,String(v));
+  return n;
+ }
+ function redraw(){
+  const c=cases.find(q=>q.id===picker.value)||cases[0], runs=c.runs.filter(r=>r.repeat===Number(rep.value));
+  const base=c.initial.and_count, lower=Math.min(...runs.map(r=>r.best)), span=Math.max(1,base-lower);
+  const x=t=>67+t/d.budget_ns*400, y=n=>30+(base-n)/span*124;
+  const chart=svg("svg",{viewBox:"0 0 490 206",role:"img","aria-label":"경과 시간별 검증된 최선 AND 게이트 수"});
+  const label=(x,y,text)=>{const t=svg("text",{x,y});t.textContent=text;chart.append(t)};
+  chart.append(svg("path",{d:"M67 20 V160 H467",fill:"none",stroke:"#809389"}));
+  label(10,22,"AND");label(25,35,base);if(lower!==base)label(25,158,lower);
+  for(const [v,x0] of [[0,65],[200,151],[400,251],[600,351],[800,450]])label(x0,185,v);
+  label(380,202,"경과 시간 (ms)");
+  const list=$("replay-events");list.replaceChildren();$("replay-detail").textContent="후보를 선택하면 생성 방식과 검사 결과를 표시합니다.";
+  let selected=null;
+  runs.sort((a,b)=>a.arm.localeCompare(b.arm));
+  for(const r of runs){
+   let [t,n]=r.points[0], line="M "+x(t)+" "+y(n);
+   for(const [v,next] of r.points.slice(1)){line+=" H "+x(v)+" V "+y(next);n=next}
+   const attrs={d:line+" H "+x(d.budget_ns),fill:"none",stroke:colors[r.arm],"stroke-width":3};
+   if(r.arm==="structure")attrs["stroke-dasharray"]="7 4";
+   chart.append(svg("path",attrs));
+   for(const e of r.events){
+    const li=el("li"), b=el("button","",paths[r.arm]+" · "+ms(e.end_ns)+" · "+e.kind+" · "+names[e.status]);
+    b.type="button";b.setAttribute("aria-pressed","false");
+    const open=()=>{if(selected)selected.setAttribute("aria-pressed","false");selected=b;b.setAttribute("aria-pressed","true");
+     $("replay-detail").textContent=e.candidate+" | 후보 출처: "+paths[r.arm]+"(무모델), AND "+e.metrics.and_count+", 깊이 "+e.metrics.depth+"/"+c.initial.depth+", 정확 검사 "+(e.exact??"미완료")+", Z3 "+(e.smt===true?"동치":e.smt===false?"불일치":"미확인")+", "+names[e.status];};
+    b.addEventListener("click",open);li.append(b);list.append(li);
+    if(r.points.slice(1).some(p=>p[0]===e.end_ns&&p[1]===e.metrics.and_count)){
+     const dot=svg("circle",{cx:x(e.end_ns),cy:y(e.metrics.and_count),r:5,fill:colors[r.arm],style:"cursor:pointer"});
+     dot.addEventListener("click",open);chart.append(dot);
+    }
+   }
+  }
+  $("replay-plot").replaceChildren(chart);
+  $("replay-result").textContent="원본 "+base+" AND · 목표 "+(base-1)+" AND · 마감 800 ms | "+runs.map(r=>paths[r.arm]+": 최선 "+r.best+" AND, 목표 "+ms(r.target_ns)).join(" / ");
+ }
+ picker.addEventListener("change",redraw);rep.addEventListener("change",redraw);redraw();
+}
+update();showNext(data.next);showMilestone(data.latest);showReplay(data.anytime);
+</script>
+</body>
+</html>

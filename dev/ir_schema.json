@@ -1,0 +1,17 @@
+{
+  "version":"w1s3-v1",
+  "common":{"op":"exact token","width":"integer 1..256"},
+  "nodes":{
+   "input":{"name":"declared name and width","args":"optional empty list"},
+   "const":{"value":"unsigned within width","args":"optional empty list"},
+   "and/or/xor":{"args":"two equal-width operands"},
+   "not":{"args":"one equal-width operand"},
+   "shl/lshr/rotl/rotr":{"args":"one equal-width operand","amount":"fixed nonnegative integer"},
+   "extract":{"args":"one operand","hi":"inclusive upper index","lo":"inclusive lower index"},
+   "concat":{"args":"2..256 operands, first operand is MSB"}
+  },
+  "ordering":{"truth_table":"first declared input is MSB of row index; bit i stores row i","aig":"declared word order and LSB first within each word"},
+  "limits":{"nodes":2048,"depth":64,"utf8_bytes":262144,"sum_input_bits":4096},
+  "reference_implementation":"mdai/logic.py",
+  "reject":["duplicate keys","unknown fields","non-finite scalars","variable shifts","stateful or executable constructs"]
+}

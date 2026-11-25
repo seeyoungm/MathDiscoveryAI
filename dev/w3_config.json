@@ -1,0 +1,17 @@
+{
+  "schema": "mdai-w3-pilot-v1",
+  "status": "predeclared_development_smoke",
+  "cohort": {"A": 10, "B": 10, "B_widths": [4, 8], "order_rule": "first 10 A; first 5 B at each width in the hash-pinned prior manifest generator order"},
+  "source_manifest_sha256": "34951a26fdf0a6067558931484915ea027a797cdc9f9d51f71eee01c0ece4077",
+  "repeats": [0, 1, 2],
+  "wall_budget_s": 60,
+  "verification_budget_s": 5,
+  "candidate_limit": 20,
+  "selection_pilot": {"fixtures_per_family": 2, "call_mode": "native chat model; fresh context; precomputed batch replay not a live matched arm"},
+  "no_ai_rank": "seeded uniform ordering of same allowed menu",
+  "replay_default": "canonical order when no real model response; never recorded as model",
+  "abc_portfolio": ["strash_only","balance_rewrite","rewrite_refactor"],
+  "on_interrupt": "persist known receipts; fail closed unfinished attempts; no reset of used budget",
+  "promotion": {"live_equal_budget_required": true, "exact_model_configuration_required": true, "independent_train_readiness_required": true},
+  "excluded": ["C","D","E","A_final","B_final","B_16_32","BTC files","external paid model APIs"]
+}

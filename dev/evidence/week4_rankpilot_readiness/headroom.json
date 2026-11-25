@@ -1,0 +1,40 @@
+{
+  "baseline_chosen_from_original_train_only": "rewrite_refactor",
+  "measures_runtime_or_generalization": false,
+  "model_fit": false,
+  "partitions": {
+    "combined_dev": {
+      "groups": 15,
+      "mean_AND_saved_oracle": "28/15",
+      "mean_AND_saved_static": "28/15",
+      "mean_maximum_top1_gain": "0",
+      "task_repeats": 45,
+      "trials_oracle_strictly_beats_static": 0
+    },
+    "new_dev": {
+      "groups": 11,
+      "mean_AND_saved_oracle": "18/11",
+      "mean_AND_saved_static": "18/11",
+      "mean_maximum_top1_gain": "0",
+      "task_repeats": 33,
+      "trials_oracle_strictly_beats_static": 0
+    },
+    "prior_dev": {
+      "groups": 4,
+      "mean_AND_saved_oracle": "5/2",
+      "mean_AND_saved_static": "5/2",
+      "mean_maximum_top1_gain": "0",
+      "task_repeats": 12,
+      "trials_oracle_strictly_beats_static": 0
+    }
+  },
+  "provenance": {
+    "expansion_preregistration_sha256": "1143a7fbf781155bf023cc7c5970a350836681ce5c8b2b4a68091f68989a84c2",
+    "expansion_receipt_index_sha256": "b5083404e3e24680590cebb790b02c704763814bef6dc91e06c2127a87a2f862",
+    "expansion_rows_sha256": "4f118c60da7f21e483d703ea0e7da0b9f6ac9bbcd218d3426378805f8dc7d78e",
+    "expansion_summary_sha256": "c74fb261d0c3a203d84207aee55b5b57d3e66946a6000a84b417094b49850ec1",
+    "original_rows_sha256": "246d28ac3b138dc7236ea876459b9506c8e151b7f0b9b67f0204ec15d05de95e"
+  },
+  "schema": "w4-logged-top1-headroom-v1",
+  "scope": "post-run descriptive diagnostic on development only; fixed ABC menu and observed rewards"
+}

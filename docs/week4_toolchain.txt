@@ -1,0 +1,9 @@
+Week 4 cloud validation toolchain (development only)
+- ABC 1.01 (compiled May 4 2025 16:37:33), Debian trixie amd64 yosys-abc 0.52-2, same published version and build string as the Week 2/3 toolchain. The old execution binary had no trusted digest in its receipt, so byte identity to the earlier executable is not claimed.
+- Verified two Debian archive signatures for the clear-signed trixie InRelease dated 2026-11-21 09:15:44 UTC using the host's preinstalled trixie release and automatic public keys. Expected valid signing fingerprints: 41587F7DB8C774BCCF131416762F67A0B2C39DE4, B8E5F13176D2A7A75220028078DBA3BC47EF2265. A third signature had no matching key in that scoped keyring; it was not used. No bad/revoked/expired signature reported.
+- Signed Release authenticated the amd64 packages index; that index authenticated the .deb. Package extracted to a temporary cloud directory, no system install. Not included in ZIP.
+- Source: https://deb.debian.org/debian/
+  bfacad4ca61899ce20d4a0d439f29339f66541561b67506364efb88e27dee870  InRelease
+  be3d7d96a040eda0505c1808cccc67f183bbc05dff0842c50f88e6c396557412  dists/trixie/main/binary-amd64/Packages.xz
+  f54c92c5ce88959f6aedc71c7b01eaf2b39d6c8c3e5f02784b6ce24736dc50e4  pool/main/y/yosys/yosys-abc_0.52-2_amd64.deb
+  c078b63884b8b615e56a9defe506478df10be8e02b1abd870d7d10678ce83753  extracted usr/bin/yosys-abc

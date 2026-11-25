@@ -1,0 +1,17 @@
+{
+  "schema": "mdai-ab-ordered-pilot-repair-v1",
+  "scope": "four known A/B development fixtures only; no model/backend call; no training; no holdout",
+  "manifest_sha256": "34951a26fdf0a6067558931484915ea027a797cdc9f9d51f71eee01c0ece4077",
+  "captured_request_sha256": "54acb5abc9584002541fa52796520ee6932ada59b82cabcdcde5522d8dcd8182",
+  "captured_response_sha256": "f8a281d05ed2ce6a1416de4dd22dab2aef59aa72547fb5e636a5c2b53b9080a8",
+  "wall_budget_s": 60,
+  "candidate_limit": 20,
+  "verification_budget_s": 5,
+  "repeats": [0, 1, 2],
+  "repeat_seed_base": 1000,
+  "max_ranked_picks": 3,
+  "offline_provider_order": "reverse first min(3,menu size) indices, then canonical unranked tail",
+  "baseline_order": "runner seeded ordering on exactly the same contract menu",
+  "reference_accounting": "charge seed build; offline arm additionally charges request formatting, provider response, parse and binding, then both charge build and verify",
+  "summary_policy": "do not score model effectiveness or promote formal gate"
+}
